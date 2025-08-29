@@ -31,7 +31,7 @@ setup_backend() {
     cd backend
     
     echo "Installing Maven dependencies..."
-    mvn clean install -DskipTests
+    ./mvnw clean install -DskipTests
     
     echo "✅ Backend setup complete!"
     cd ..
@@ -43,7 +43,7 @@ setup_frontend() {
     cd frontend
     
     echo "Installing npm dependencies..."
-    npm install
+    npm install --legacy-peer-deps
     
     echo "✅ Frontend setup complete!"
     cd ..
@@ -55,7 +55,7 @@ setup_mcp_server() {
     cd mcp-server
     
     echo "Installing npm dependencies..."
-    npm install
+    npm install --legacy-peer-deps
     
     echo "✅ MCP server setup complete!"
     cd ..
@@ -78,7 +78,7 @@ start_services() {
     # Start Spring Boot backend in background
     echo "Starting Spring Boot backend on port 8080..."
     cd backend
-    mvn spring-boot:run &
+    ./mvnw spring-boot:run &
     BACKEND_PID=$!
     cd ..
     
@@ -86,16 +86,16 @@ start_services() {
     sleep 10
     
     # Start React frontend
-    echo "Starting React frontend on port 3000..."
+    echo "Starting React frontend on port 3002..."
     cd frontend
-    npm start &
+    PORT=3002 npm start &
     FRONTEND_PID=$!
     cd ..
     
     echo ""
     echo "🎉 All services started successfully!"
     echo ""
-    echo "📱 Frontend: http://localhost:3000"
+    echo "📱 Frontend: http://localhost:3002"
     echo "🔧 Backend API: http://localhost:8080"
     echo "🔌 MCP Server: http://localhost:3001"
     echo "🗄️  H2 Database Console: http://localhost:8080/h2-console"
