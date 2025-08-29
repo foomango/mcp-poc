@@ -43,7 +43,7 @@ setup_frontend() {
     cd frontend
     
     echo "Installing npm dependencies..."
-    npm install --legacy-peer-deps
+    npm install
     
     echo "✅ Frontend setup complete!"
     cd ..
@@ -55,7 +55,7 @@ setup_mcp_server() {
     cd mcp-server
     
     echo "Installing npm dependencies..."
-    npm install --legacy-peer-deps
+    npm install
     
     echo "✅ MCP server setup complete!"
     cd ..
@@ -68,7 +68,7 @@ start_services() {
     # Start MCP server in background
     echo "Starting MCP server on port 3001..."
     cd mcp-server
-    npm start &
+    PORT=3001 npm start &
     MCP_PID=$!
     cd ..
     
