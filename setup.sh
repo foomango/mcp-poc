@@ -76,7 +76,7 @@ start_services() {
     sleep 3
     
     # Start Spring Boot backend in background
-    echo "Starting Spring Boot backend on port 8080..."
+    echo "Starting Spring Boot backend on port 8888..."
     cd backend
     ./mvnw spring-boot:run &
     BACKEND_PID=$!
@@ -96,9 +96,9 @@ start_services() {
     echo "🎉 All services started successfully!"
     echo ""
     echo "📱 Frontend: http://localhost:3002"
-    echo "🔧 Backend API: http://localhost:8080"
+    echo "🔧 Backend API: http://localhost:8888"
     echo "🔌 MCP Server: http://localhost:3001"
-    echo "🗄️  H2 Database Console: http://localhost:8080/h2-console"
+    echo "🗄️  H2 Database Console: http://localhost:8888/h2-console"
     echo ""
     echo "Press Ctrl+C to stop all services"
     
